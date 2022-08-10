@@ -1,0 +1,219 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Documentação de Usuarios",
+		"description": "Este é um aplicativo de cadastro de usuarios",
+		"version": "1.0.0",
+		"contact": {
+			"email": "rubenscruz88@gmail.com"
+		}
+	},
+	"paths": {
+		"/users": {
+			"post": {
+				"tags": ["Usuarios"],
+				"summary": "Cria o usuario",
+				"description": "Cria o usuario",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"proprieties": {
+									"name": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									}
+								},
+								"example": {
+									"name": "Rubens",
+									"email": "rubenscruz88@gmail.com"
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description":"Usuario ja existe"
+					}
+				}
+			},
+			"get": {
+				"tags": ["Usuarios"],
+				"summary": "Lista todos os usuarios",
+				"description": "Lista todos os usuarios se o usuario informado for admin",
+				"parameters": [{
+					"name": "user_id",
+					"in": "header",
+					"description": "Id do usuario",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"style": "simple"
+				}],
+				"responses": {
+					"201": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"id": {
+												"type": "string"
+											},
+											"name": {
+												"type": "string"
+											},
+											"admin": {
+												"type": "boolean"
+											},
+											"email": {
+												"type": "string"
+											},
+											"created_at": {
+												"type": "string",
+												"format": "date-time"
+											},
+											"updated_at": {
+												"type": "string",
+												"format": "date-time"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description":"Usuario não existe"
+					}
+				}
+			}
+		},
+		"/users/:user_id/admin": {
+			"patch": {
+				"tags": ["Usuarios"],
+				"summary": "Define o usuario como admin",
+				"description": "Define o usuario como admin",
+				"parameters": [{
+					"name": "user_id",
+					"in": "header",
+					"description": "Id do usuario",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"style": "simple"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"id": {
+												"type": "string"
+											},
+											"name": {
+												"type": "string"
+											},
+											"admin": {
+												"type": "boolean"
+											},
+											"email": {
+												"type": "string"
+											},
+											"created_at": {
+												"type": "string",
+												"format": "date-time"
+											},
+											"updated_at": {
+												"type": "string",
+												"format": "date-time"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description":"Usuario não existe"
+					}
+				}
+			}
+		},
+		"/users/:user_id": {
+			"get": {
+				"tags": ["Usuarios"],
+				"summary": "Exibe o perfil do usuario",
+				"description": "Exibe o perfil do usuario",
+				"parameters": [{
+					"name": "user_id",
+					"in": "header",
+					"description": "Id do usuario",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"style": "simple"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"id": {
+												"type": "string"
+											},
+											"name": {
+												"type": "string"
+											},
+											"admin": {
+												"type": "boolean"
+											},
+											"email": {
+												"type": "string"
+											},
+											"created_at": {
+												"type": "string",
+												"format": "date-time"
+											},
+											"updated_at": {
+												"type": "string",
+												"format": "date-time"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description":"Usuario não existe"
+					}
+				}
+			}
+		}
+	}
+
+}
